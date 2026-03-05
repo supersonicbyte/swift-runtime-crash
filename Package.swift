@@ -8,7 +8,6 @@ let package = Package(
             name: "main",
             dependencies: ["Hooks"],
             path: "Sources/main",
-            swiftSettings: [.unsafeFlags(["-Onone"])]   // keep all calls visible in assembly
         ),
         .target(
             name: "Hooks",
