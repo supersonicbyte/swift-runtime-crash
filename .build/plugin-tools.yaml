@@ -1,0 +1,90 @@
+client:
+  name: basic
+  file-system: device-agnostic
+tools: {}
+targets:
+  "Hooks-aarch64-unknown-linux-gnu-debug.module": ["<Hooks-aarch64-unknown-linux-gnu-debug.module>"]
+  "PackageStructure": ["<PackageStructure>"]
+  "main": ["<Hooks-aarch64-unknown-linux-gnu-debug.module>","<main-aarch64-unknown-linux-gnu-debug.exe>","<main-aarch64-unknown-linux-gnu-debug.module>"]
+  "main-aarch64-unknown-linux-gnu-debug.exe": ["<main-aarch64-unknown-linux-gnu-debug.exe>"]
+  "main-aarch64-unknown-linux-gnu-debug.module": ["<main-aarch64-unknown-linux-gnu-debug.module>"]
+  "test": ["<Hooks-aarch64-unknown-linux-gnu-debug.module>","<main-aarch64-unknown-linux-gnu-debug.exe>","<main-aarch64-unknown-linux-gnu-debug.module>"]
+default: "main"
+nodes:
+  "/home/ubuntu/GitHub/retain/Sources/Hooks/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+  "/home/ubuntu/GitHub/retain/Sources/main/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+commands:
+  "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Hooks.build/hooks.c.o":
+    tool: clang
+    inputs: ["/home/ubuntu/GitHub/retain/Sources/Hooks/hooks.c"]
+    outputs: ["/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Hooks.build/hooks.c.o"]
+    description: "Compiling Hooks hooks.c"
+    args: ["/usr/local/share/toolchains/6.2.0/usr/bin/clang","-target","aarch64-unknown-linux-gnu","-O0","-DSWIFT_PACKAGE=1","-DDEBUG=1","-fblocks","-index-store-path","/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/index/store","-I","/home/ubuntu/GitHub/retain/Sources/Hooks/include","-fPIC","-g","-fno-omit-frame-pointer","-MD","-MT","dependencies","-MF","/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Hooks.build/hooks.c.d","-c","/home/ubuntu/GitHub/retain/Sources/Hooks/hooks.c","-o","/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Hooks.build/hooks.c.o"]
+    deps: "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Hooks.build/hooks.c.d"
+
+  "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/main.swiftmodule.o":
+    tool: shell
+    inputs: ["/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Modules/main.swiftmodule"]
+    outputs: ["/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/main.swiftmodule.o"]
+    description: "Wrapping AST for main for debugging"
+    args: ["/usr/local/share/toolchains/6.2.0/usr/bin/swiftc","-modulewrap","/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Modules/main.swiftmodule","-o","/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/main.swiftmodule.o","-target","aarch64-unknown-linux-gnu"]
+
+  "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/home/ubuntu/GitHub/retain/Sources/main/main.swift"]
+    outputs: ["/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/sources"]
+    description: "Write auxiliary file /home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/sources"
+
+  "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.product/Objects.LinkFileList":
+    tool: write-auxiliary-file
+    inputs: ["<link-file-list>","/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Hooks.build/hooks.c.o","/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/main.swift.o","/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/main.swiftmodule.o"]
+    outputs: ["/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.product/Objects.LinkFileList"]
+    description: "Write auxiliary file /home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.product/Objects.LinkFileList"
+
+  "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/swift-version--1B491C3C2A126B95.txt":
+    tool: write-auxiliary-file
+    inputs: ["<swift-get-version>","/usr/local/share/toolchains/6.2.0/usr/bin/swiftc"]
+    outputs: ["/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/swift-version--1B491C3C2A126B95.txt"]
+    always-out-of-date: "true"
+    description: "Write auxiliary file /home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/swift-version--1B491C3C2A126B95.txt"
+
+  "<Hooks-aarch64-unknown-linux-gnu-debug.module>":
+    tool: phony
+    inputs: ["/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Hooks.build/hooks.c.o"]
+    outputs: ["<Hooks-aarch64-unknown-linux-gnu-debug.module>"]
+
+  "<main-aarch64-unknown-linux-gnu-debug.exe>":
+    tool: phony
+    inputs: ["/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main"]
+    outputs: ["<main-aarch64-unknown-linux-gnu-debug.exe>"]
+
+  "<main-aarch64-unknown-linux-gnu-debug.module>":
+    tool: phony
+    inputs: ["/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/main.swift.o","/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Modules/main.swiftmodule"]
+    outputs: ["<main-aarch64-unknown-linux-gnu-debug.module>"]
+
+  "C.main-aarch64-unknown-linux-gnu-debug.exe":
+    tool: shell
+    inputs: ["/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Hooks.build/hooks.c.o","/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/main.swift.o","/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/main.swiftmodule.o","/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.product/Objects.LinkFileList"]
+    outputs: ["/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main"]
+    description: "Linking ./.build/aarch64-unknown-linux-gnu/debug/main"
+    args: ["/usr/local/share/toolchains/6.2.0/usr/bin/swiftc","-L","/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug","-o","/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main","-module-name","main","-emit-executable","-Xlinker","--defsym","-Xlinker","main=main_main","-Xlinker","-rpath=$ORIGIN","@/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.product/Objects.LinkFileList","-target","aarch64-unknown-linux-gnu","-g"]
+
+  "C.main-aarch64-unknown-linux-gnu-debug.module":
+    tool: shell
+    inputs: ["/home/ubuntu/GitHub/retain/Sources/main/main.swift","/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/swift-version--1B491C3C2A126B95.txt","/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Hooks.build/hooks.c.o","/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/sources"]
+    outputs: ["/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/main.swift.o","/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Modules/main.swiftmodule"]
+    description: "Compiling Swift Module 'main' (1 sources)"
+    args: ["/usr/local/share/toolchains/6.2.0/usr/bin/swiftc","-module-name","main","-emit-dependencies","-emit-module","-emit-module-path","/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Modules/main.swiftmodule","-output-file-map","/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/output-file-map.json","-incremental","-c","@/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/sources","-I","/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Modules","-target","aarch64-unknown-linux-gnu","-incremental","-enable-batch-mode","-serialize-diagnostics","-index-store-path","/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/index/store","-Onone","-enable-testing","-j8","-DSWIFT_PACKAGE","-DDEBUG","-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE","-Xcc","-fmodule-map-file=/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Hooks.build/module.modulemap","-Xcc","-I","-Xcc","/home/ubuntu/GitHub/retain/Sources/Hooks/include","-module-cache-path","/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/ModuleCache","-parseable-output","-Xfrontend","-entry-point-function-name","-Xfrontend","main_main","-color-diagnostics","-swift-version","5","-Onone","-g","-Xcc","-fPIC","-Xcc","-g","-package-name","retain","-Xcc","-fno-omit-frame-pointer"]
+
+  "PackageStructure":
+    tool: package-structure-tool
+    inputs: ["/home/ubuntu/GitHub/retain/Sources/Hooks/","/home/ubuntu/GitHub/retain/Sources/main/","/home/ubuntu/GitHub/retain/Package.swift","/home/ubuntu/GitHub/retain/Package.resolved"]
+    outputs: ["<PackageStructure>"]
+    description: "Planning build"
+    allow-missing-inputs: true
+

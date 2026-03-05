@@ -1,0 +1,236 @@
+{
+  "builtTestProducts" : [
+
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.main-aarch64-unknown-linux-gnu-debug.module" : {
+      "executable" : "/usr/local/share/toolchains/6.2.0/usr/bin/swiftc",
+      "fileList" : "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/sources",
+      "importPath" : "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/home/ubuntu/GitHub/retain/Sources/main/main.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/swift-version--1B491C3C2A126B95.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Hooks.build/hooks.c.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/sources"
+        }
+      ],
+      "isLibrary" : false,
+      "moduleName" : "main",
+      "moduleOutputPath" : "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Modules/main.swiftmodule",
+      "objects" : [
+        "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/main.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "aarch64-unknown-linux-gnu",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j8",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-Xcc",
+        "-fmodule-map-file=/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Hooks.build/module.modulemap",
+        "-Xcc",
+        "-I",
+        "-Xcc",
+        "/home/ubuntu/GitHub/retain/Sources/Hooks/include",
+        "-module-cache-path",
+        "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/ModuleCache",
+        "-parseable-output",
+        "-Xfrontend",
+        "-entry-point-function-name",
+        "-Xfrontend",
+        "main_main",
+        "-color-diagnostics",
+        "-swift-version",
+        "5",
+        "-Onone",
+        "-g",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "retain",
+        "-Xcc",
+        "-fno-omit-frame-pointer"
+      ],
+      "outputFileMapPath" : "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/main.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Modules/main.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/home/ubuntu/GitHub/retain/Sources/main/main.swift"
+      ],
+      "tempsPath" : "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "main" : [
+      "/usr/local/share/toolchains/6.2.0/usr/bin/swiftc",
+      "-module-name",
+      "main",
+      "-package-name",
+      "retain",
+      "-c",
+      "/home/ubuntu/GitHub/retain/Sources/main/main.swift",
+      "-I",
+      "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Modules",
+      "-target",
+      "aarch64-unknown-linux-gnu",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j8",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-Xcc",
+      "-fmodule-map-file=/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Hooks.build/module.modulemap",
+      "-Xcc",
+      "-I",
+      "-Xcc",
+      "/home/ubuntu/GitHub/retain/Sources/Hooks/include",
+      "-module-cache-path",
+      "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/ModuleCache",
+      "-parseable-output",
+      "-Xfrontend",
+      "-entry-point-function-name",
+      "-Xfrontend",
+      "main_main",
+      "-color-diagnostics",
+      "-swift-version",
+      "5",
+      "-Onone",
+      "-g",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "retain",
+      "-Xcc",
+      "-fno-omit-frame-pointer",
+      "-driver-use-frontend-path",
+      "/usr/local/share/toolchains/6.2.0/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "Hooks" : [
+
+    ],
+    "main" : [
+      "Hooks"
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+
+  },
+  "traitConfiguration" : {
+    "default" : {
+
+    }
+  },
+  "writeCommands" : {
+    "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/ubuntu/GitHub/retain/Sources/main/main.swift"
+        }
+      ],
+      "outputFilePath" : "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/sources"
+    },
+    "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/Hooks.build/hooks.c.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/main.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.build/main.swiftmodule.o"
+        }
+      ],
+      "outputFilePath" : "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/main.product/Objects.LinkFileList"
+    },
+    "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/swift-version--1B491C3C2A126B95.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/usr/local/share/toolchains/6.2.0/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/home/ubuntu/GitHub/retain/.build/aarch64-unknown-linux-gnu/debug/swift-version--1B491C3C2A126B95.txt"
+    }
+  }
+}

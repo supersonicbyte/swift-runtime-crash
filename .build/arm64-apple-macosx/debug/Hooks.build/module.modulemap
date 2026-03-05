@@ -1,0 +1,4 @@
+module Hooks {
+    umbrella header "/Users/ucanbarlic/GitHub/retain/Sources/Hooks/include/Hooks.h"
+    export *
+}
