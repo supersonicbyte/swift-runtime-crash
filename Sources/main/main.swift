@@ -1,11 +1,30 @@
 import Hooks
 
-class Box { var x = 42 }
+final class Box { var x = 42 }
 
-// Hooking _swift_allocObject triggers CALL_IMPL_CHECK in the Swift runtime,
-// which sets the swizzling flag so that swift_retain (PLT) routes through
-// _swift_retain_adapterImpl → _swift_retain (our hook).
+// Keep the original trigger: _swift_allocObject replacement turns on the
+// runtime swizzle path, so later retains route through
+// _swift_retain_adapterImpl -> _swift_retain (our hook).
 install_hooks()
 
-let b = Box()    // first allocation fires CALL_IMPL_CHECK → swizzling active
-print(b.x)       // triggers Character retain through the adapter → crash on Linux ARM64 / Swift 6.3
+let boxes = (0..<32).map { i -> Box in
+    let box = Box()
+    box.x = i
+    return box
+}
+
+let labels = boxes.map { "box:\($0.x)" }
+
+for iteration in 0..<200_000 {
+    let rendered = labels
+        .enumerated()
+        .map { index, label in "\(index)=\(label)" }
+        .joined(separator: " | ")
+
+    if iteration % 50_000 == 0 {
+        print(rendered.prefix(80))
+    }
+}
+
+remove_hooks()
+print("done")
